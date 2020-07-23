@@ -6,7 +6,7 @@ function addRow() {
             <td><input type="number" name="section" class="form-control" placeholder="01" min=0 max=99 size=1 required></td>
             <td><button type="button" class="close" id="del">&times;</button></td>
         </tr>
-        <tr class="result"><td colspan=4>Result</td></tr>`
+        <tr class="result"><td colspan=4></td></tr>`
     );
 }
 
@@ -26,9 +26,18 @@ $(function () {
             var subject = $(this).find("input[name='subject']").val();
             var number = $(this).find("input[name='number']").val();
             var section = $(this).find("input[name='section']").val();
-            $(this).next("tr.result").text(subject+number+section);
+            var name = [subject, number, section].join(' ');
+            var disp = $(this).next("tr.result").children("td");
+            
+            $.post("https://us-central1-ismyclassonline.cloudfunctions.net/hello_http", {"name": name}, function (res) { /* post the string */
+                console.log(res);
+                disp.html(res);
+            },
+            "html").fail(function () { /* show fail message on error */
+                alert("Failed");
+            });
         });
-       
+        $("tr.result").show(500);
         event.preventDefault();
     });
 });
