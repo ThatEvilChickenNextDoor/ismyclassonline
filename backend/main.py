@@ -18,19 +18,13 @@ def tag_scraper(request):
         number = request_form['number'].upper()
         section = request_form['section'].zfill(2)
         URL = "https://courselist.wm.edu/courselist/courseinfo/searchresults?term_code=202110&term_subj={}&attr=0&attr2=0&levl=0&status=0&ptrm=0&search=Search".format(subject)
-        print("getting page")
         r = requests.get(URL)
-        print("got page")
         if r.status_code != 200:
             res = "Subject code not found"
         else:
-            print("souping")
             soup = BeautifulSoup(r.text, 'html5lib')
-            print("tabling")
             table = soup.table
-            print("finding")
             code = table.find("td", string=subject+' '+number+' '+section+' ')
-            print("found")
             if code is None:
                 res = "Number/section not found"
             else:

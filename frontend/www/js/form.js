@@ -26,11 +26,9 @@ $(function () {
             var subject = $(this).find("input[name='subject']").val();
             var number = $(this).find("input[name='number']").val();
             var section = $(this).find("input[name='section']").val();
-            //var name = [subject, number, section].join(' ');
             var disp = $(this).next("tr.result").children("td");
             
             $.post("https://us-east1-ismyclassonline.cloudfunctions.net/tag_scraper", {"subject": subject, "number": number, "section": section}, function (res) { /* post the string */
-                console.log(res);
                 disp.html(res);
             },
             "html").fail(function () { /* show fail message on error */
