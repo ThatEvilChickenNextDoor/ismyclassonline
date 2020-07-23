@@ -26,16 +26,23 @@ $(function () {
             var subject = $(this).find("input[name='subject']").val();
             var number = $(this).find("input[name='number']").val();
             var section = $(this).find("input[name='section']").val();
-            var name = [subject, number, section].join(' ');
+            //var name = [subject, number, section].join(' ');
             var disp = $(this).next("tr.result").children("td");
             
-            $.post("https://us-central1-ismyclassonline.cloudfunctions.net/hello_http", {"name": name}, function (res) { /* post the string */
+            $.post("https://us-east1-ismyclassonline.cloudfunctions.net/tag_scraper", {"subject": subject, "number": number, "section": section}, function (res) { /* post the string */
                 console.log(res);
                 disp.html(res);
             },
             "html").fail(function () { /* show fail message on error */
                 alert("Failed");
             });
+            disp.html(`
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>`
+            )
         });
         $("tr.result").show(500);
         event.preventDefault();
