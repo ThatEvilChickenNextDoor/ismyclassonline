@@ -2,7 +2,7 @@ function addRow() {
     $("#table > tbody").append(`
         <tr class="course">
             <td><input type="text" name="subject" class="form-control" placeholder="CSCI" maxlength=4 size=1 required></td>
-            <td><input type="number" name="number" class="form-control" placeholder="101" min=0 max=999 size=1 required></td>
+            <td><input type="text" name="number" class="form-control" placeholder="141" maxlength=4 size=1 required></td>
             <td><input type="number" name="section" class="form-control" placeholder="01" min=0 max=99 size=1 required></td>
             <td><button type="button" class="close" id="del">&times;</button></td>
         </tr>
