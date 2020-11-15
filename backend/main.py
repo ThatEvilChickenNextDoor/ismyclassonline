@@ -17,7 +17,7 @@ def tag_scraper(request):
         subject = request_form['subject'].upper()
         number = request_form['number'].upper()
         section = request_form['section'].zfill(2)
-        URL = "https://courselist.wm.edu/courselist/courseinfo/searchresults?term_code=202110&term_subj={}&attr=0&attr2=0&levl=0&status=0&ptrm=0&search=Search".format(subject)
+        URL = "https://courselist.wm.edu/courselist/courseinfo/searchresults?term_code=202120&term_subj={}&attr=0&attr2=0&levl=0&status=0&ptrm=0&search=Search".format(subject)
         r = requests.get(URL)
         if r.status_code != 200:
             res = "Subject code not found"
